@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -1039,3 +1039,15 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "php",
+  callback = function()
+    vim.opt_local.tabstop = 4       -- width of a tab
+    vim.opt_local.shiftwidth = 4    -- indent width
+    vim.opt_local.softtabstop = 4   -- how many spaces <Tab> feels like
+    vim.opt_local.expandtab = true  -- convert tabs to spaces
+    vim.opt_local.autoindent = true
+    vim.opt_local.smartindent = true
+  end,
+})
